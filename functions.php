@@ -1,11 +1,10 @@
 <?php // Example 26-1: functions.php
   $dbhost  = 'localhost';    // Unlikely to require changing
-  $dbname  = 'robinsnest';   // Modify these...
-  $dbuser  = 'robinsnest';   // ...variables according
-  $dbpass  = 'rnpassword';   // ...to your installation
+  $dbname  = 'robinsdb';   // Modify these...
+  $dbuser  = 'root';   // ...variables according
   $appname = "Robin's Nest"; // ...and preference
 
-  $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+  $connection = new mysqli('localhost', 'root', NULL, 'robinsdb');
   if ($connection->connect_error) die($connection->connect_error);
 
   function createTable($name, $query)
