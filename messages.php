@@ -12,7 +12,7 @@
 
     if ($text != "")
     {
-      $pm   = substr(sanitizeString($_POST['pm']),0,1);
+      $pm   = 0;
       $time = time();
       queryMysql("INSERT INTO messages VALUES(NULL, '$user',
         '$view', '$pm', $time, '$text')");
@@ -35,8 +35,6 @@
       <form method='post' action='messages.php?view=$view'>
       Type here to leave a message:<br>
       <textarea name='text' cols='40' rows='3'></textarea><br>
-      Public<input type='radio' name='pm' value='0' checked='checked'>
-      Private<input type='radio' name='pm' value='1'>
       <input type='submit' value='Post Message'></form><br>
 _END;
 
@@ -56,18 +54,18 @@ _END;
 
       if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)
       {
-        echo date('M jS \'y g:ia:', $row['time']);
+        $messenger= $row['auth'];
+        if (file_exists("$messenger.jpg"))
+          echo "<img src='$messenger.jpg' style='width:50px;'>";
         echo " <a href='messages.php?view=" . $row['auth'] . "'>" . $row['auth']. "</a> ";
+        echo ": &quot;" . $row['message'] . "&quot; ";
 
-        if ($row['pm'] == 0)
-          echo "wrote: &quot;" . $row['message'] . "&quot; ";
-        else
-          echo "whispered: <span class='whisper'>&quot;" .
-            $row['message']. "&quot;</span> ";
 
         if ($row['recip'] == $user)
-          echo "[<a href='messages.php?view=$view" .
-               "&erase=" . $row['id'] . "'>erase</a>]";
+          echo "<a href='messages.php?view=$view" .
+               "&erase=" . $row['id'] . "' style='font-size:12px; text-decoration:none;'>[erase]</a>";
+        // echo "<a style='font-size:12px;'>date('M jS g:ia', $row['time'])</a>;"
+        echo date ('M jS g:ia' , $row['time']);
 
         echo "<br>";
       }

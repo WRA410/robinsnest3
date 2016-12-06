@@ -1,8 +1,8 @@
 <?php // Example 26-1: functions.php
-  $dbhost  = 'localhost';    // Unlikely to require changing
+  $dbhost  = 'localhost:100';    // Unlikely to require changing
   $dbname  = 'robinsdb';   // Modify these...
   $dbuser  = 'root';   // ...variables according
-  $appname = "Robin's Nest"; // ...and preference
+  $appname = "Weeb Connect"; // ...and preference
 
   $connection = new mysqli('localhost', 'root', NULL, 'robinsdb');
   if ($connection->connect_error) die($connection->connect_error);
