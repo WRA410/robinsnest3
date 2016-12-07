@@ -2,10 +2,10 @@
 
 canvas               = O('logo')
 context              = canvas.getContext('2d')
-context.font         = 'bold italic 97px Georgia'
+context.font         = 'bold italic 75px Georgia'
 context.textBaseline = 'top'
 image                = new Image()
-image.src            = 'robin.gif'
+image.src            = 'pidgey.png'
 
 image.onload = function()
 {
@@ -13,9 +13,9 @@ image.onload = function()
   gradient.addColorStop(0.00, '#faa')
   gradient.addColorStop(0.66, '#f00')
   context.fillStyle = gradient
-  context.fillText(  "R  bin's Nest", 0, 0)
-  context.strokeText("R  bin's Nest", 0, 0)
-  context.drawImage(image, 64, 32)
+  context.fillText(  "Weeb     Connect", 0, 0)
+  context.strokeText("Weeb     Connect", 0, 0)
+  context.drawImage(image, 210, 0)
 }
 
 function O(i) { return typeof i == 'object' ? i : document.getElementById(i) }
